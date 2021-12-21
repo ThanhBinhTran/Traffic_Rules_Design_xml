@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<parameters xmlns:xacro='http://www.ros.org/wiki/xacro' name='parameters'>
+
+<!-- include pre-define property -->
+<xacro:include filename='property.xacro' />
+
+<xacro:macro name="parameter" params="name value">
+  <parameter name="${name}" value="${value}"/>
+</xacro:macro>
+
+<xacro:parameter name="HIGH_10" value="1.0" />
+<xacro:parameter name="HIGH_09" value="0.9" />
+<xacro:parameter name="HIGH_08" value="0.8" />
+<xacro:parameter name="HIGH_07" value="0.7" />
+<xacro:parameter name="HIGH_06" value="0.6" />
+<xacro:parameter name="NORM_05" value="0.5" />
+<xacro:parameter name="LOW_04" value="0.4" />
+<xacro:parameter name="LOW_03" value="0.4" />
+<xacro:parameter name="LOW_02" value="0.4" />
+<xacro:parameter name="LOW_01" value="0.4" />
+<xacro:parameter name="LOW_00" value="0.0" />
+<xacro:parameter name="DISTANCE_SAFETY" value="6.0" />
+<xacro:parameter name="DISTANCE_WARNING" value="4.0" />
+<xacro:parameter name="DISTANCE_DANGER" value="2.0" />
+<xacro:parameter name="OBSTACLE_FIXED" value="1" />
+<xacro:parameter name="OBSTACLE_MOVABLE" value="2" />
+
+</parameters>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<parameters xmlns:xacro="http://www.ros.org/wiki/xacro" name="properties">
+<xacro:property name="HIGH_10" value="1.0" />
+<xacro:property name="HIGH_09" value="0.9" />
+<xacro:property name="HIGH_08" value="0.8" />
+<xacro:property name="HIGH_07" value="0.7" />
+<xacro:property name="HIGH_06" value="0.6" />
+<xacro:property name="NORM_05" value="0.5" />
+<xacro:property name="LOW_04" value="0.4" />
+<xacro:property name="LOW_03" value="0.4" />
+<xacro:property name="LOW_02" value="0.4" />
+<xacro:property name="LOW_01" value="0.4" />
+<xacro:property name="LOW_00" value="0.0" />
+<xacro:property name="DISTANCE_SAFETY" value="6.0" />
+<xacro:property name="DISTANCE_WARNING" value="4.0" />
+<xacro:property name="DISTANCE_DANGER" value="2.0" />
+<xacro:property name="OBSTACLE_FIXED" value="1" />
+<xacro:property name="OBSTACLE_MOVABLE" value="2" />
+</parameters>
