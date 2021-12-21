@@ -27,7 +27,7 @@
 
 <!-- default rule , condition = True -->
 <xacro:rules name='default'
-    action='GO_STRANGE' confidence='${NORM_05}' priority='${LOW_00}' 
+    action='GO_STRANGE' confidence='${NORM_05}' priority='${LOW_01}' 
     condition = 'True'
 />   
 <!-- end of rules -->
