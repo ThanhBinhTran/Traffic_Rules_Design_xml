@@ -1,6 +1,7 @@
 # Traffic rules design for robotic in ROS
-This mini project shows to how to design traffic rules in xacro (xml macro) format. It helps users easy to define traffic rule without concern the programming language
+This mini-project shows how to design traffic rules in xacro (XML macro) format. It helps users easy to define/update traffic rules without altering the executable program.
 
+* to update, modify, alter the rules edit rules.xacro file
 ##### To generate paramenter.xml file (run in ROS envirment):
 ```
 xacro parameter.xacro -o parameter.xml
@@ -13,5 +14,3 @@ xacro rules.xacro -o rules.xml
 ```
 python rulesUnderstanding.py 
 ```
-
-##### to update, modify, alter the rules edit rules.xacro
