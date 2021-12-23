@@ -56,21 +56,20 @@ def choose_rule(rule_condition_result, rule_priorities):
     return rule_choose_idx
 
 ''' print rule out '''
-def print_chosen_rule(idx, rule_names, rule_conditions, rule_priorities, 
+def print_rule(idx, rule_names, rule_conditions, rule_priorities, 
             rule_confidences, rule_actions):
-    print ("rule_names: ", rule_names[idx])
-    print ("_rule_actions: ", rule_actions[idx])
-    print ("_rule_conditions: ", rule_conditions[idx])
-    print ("_rule_priorities: ", rule_priorities[idx])
-    print ("_rule_confidences: ", rule_confidences[idx])
+        print ("rule_names: ", rule_names[idx])
+        print ("_____actions: ", rule_actions[idx])
+        print ("_____condition: ", rule_conditions[idx])
+        print ("_____prioritie: ", rule_priorities[idx])
+        print ("_____confidence: ", rule_confidences[idx])
+
 
 def print_rules(rule_names, rule_conditions, rule_priorities, 
             rule_confidences, rule_actions):
     for i in range(len(rule_names)):
-        print ("rule_names: ", rule_names[i])
-        print ("_____actions: ", rule_actions[i])
-        print ("_____prioritie: {0}, confidence: {1}".format( rule_priorities[i], rule_confidences[i]) )
-        print ("_____condition: ", rule_conditions[i])
+        print_rule(i, rule_names, rule_conditions, rule_priorities, 
+            rule_confidences, rule_actions)
 
 def main(rules_file, param_file):
     print(__file__ + " start!!")
@@ -99,20 +98,23 @@ def main(rules_file, param_file):
     param_root = param_tree.getroot()
 
 
-    ''' applying for specific obstacle '''
+    ''' applying for specific enviroment '''
     OPENCV_obstacle = get_parameter_value(param_root, "OBSTACLE_FIXED")
     LiDAR_distance = 3.2
-    #CNN_sign_recognition = get_parameter_value(param_root, "NONE")
+    CNN_sign_recognition = get_parameter_value(param_root, "NONE")
 
     # get all rules matching specific situation
-    rule_condition_result = apply_specific_situation(obstacle = OPENCV_obstacle, distance = LiDAR_distance, 
+    rule_condition_result = apply_specific_situation(obstacle = OPENCV_obstacle,
+                    distance = LiDAR_distance, 
+                    CNN_sign_recognition = CNN_sign_recognition, 
                     rule_conditions = rule_conditions)
     print ("rule_maching result [condition]:", rule_condition_result)
     print ("rule_maching result [priorities]:", rule_priorities)
     print ("rule_maching result [confidences]:", rule_confidences)
-    
+
     rule_idx = choose_rule(rule_condition_result, rule_priorities)
-    print_chosen_rule(rule_idx, rule_names, rule_conditions, rule_priorities, 
+    # print chosen rule
+    print_rule(rule_idx, rule_names, rule_conditions, rule_priorities, 
                     rule_confidences, rule_actions)
     
 if __name__ == '__main__':
