@@ -31,7 +31,7 @@
     condition = 'OPENCV_obstacle == ${OBSTACLE_FIXED} and LiDAR_distance  &lt; ${DISTANCE_DANGER}'
 />
 
-<xacro:rules name='03_SET_SPEED_LIMIT_sign speed limited recognition'
+<xacro:rules name='03_SET_SPEED_LIMIT_sign speed limit recognition'
     action='SET_SPEED_LIMIT' priority='${HIGH_10}' 
     condition = 'CNN_sign_recognition == ${SPEED_LIMIT}'
 />
