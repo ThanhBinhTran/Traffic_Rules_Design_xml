@@ -58,10 +58,10 @@ def choose_rule(rule_condition_result, rule_priorities):
 ''' print rule out '''
 def print_rule(idx, rule_names, rule_conditions, rule_priorities, 
             rule_confidences, rule_actions):
-        print ("rule_names: ", rule_names[idx])
-        print ("_____actions: ", rule_actions[idx])
+        print ("rule_names ", rule_names[idx])
+        print ("_____action: ", rule_actions[idx])
         print ("_____condition: ", rule_conditions[idx])
-        print ("_____prioritie: ", rule_priorities[idx])
+        print ("_____priority: ", rule_priorities[idx])
         print ("_____confidence: ", rule_confidences[idx])
 
 
@@ -108,9 +108,9 @@ def main(rules_file, param_file):
                     distance = LiDAR_distance, 
                     CNN_sign_recognition = CNN_sign_recognition, 
                     rule_conditions = rule_conditions)
-    print ("rule_maching result [condition]:", rule_condition_result)
-    print ("rule_maching result [priorities]:", rule_priorities)
-    print ("rule_maching result [confidences]:", rule_confidences)
+    print ("rule_matching result [conditions]:", rule_condition_result)
+    print ("rule_matching result [priorities]:", rule_priorities)
+    print ("rule_matching result [confidences]:", rule_confidences)
 
     rule_idx = choose_rule(rule_condition_result, rule_priorities)
     # print chosen rule
