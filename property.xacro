@@ -11,9 +11,13 @@
 <xacro:property name="LOW_02" value="0.4" />
 <xacro:property name="LOW_01" value="0.4" />
 <xacro:property name="LOW_00" value="0.0" />
+<!-- LiDAR output property-->
 <xacro:property name="DISTANCE_SAFETY" value="6.0" />
 <xacro:property name="DISTANCE_WARNING" value="4.0" />
 <xacro:property name="DISTANCE_DANGER" value="2.0" />
+<!-- OPEN CV detection property -->
 <xacro:property name="OBSTACLE_FIXED" value="1" />
 <xacro:property name="OBSTACLE_MOVABLE" value="2" />
+<!-- sign recognation property-->
+<xacro:property name="SPEED_LIMIT" value="1" />
 </parameters>

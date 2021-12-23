@@ -4,23 +4,30 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <rules name="rules">
-  <rule name="SLOW_fixed obstacle ahead">
-    <condition condition="obstacle == 1 and distance &lt; 4.0 and distance &gt; 2.0"/>
+  <!-- rule data-->
+  <rule name="00_default">
+    <condition condition="True"/>
+    <action action="GO_STRANGE"/>
+    <confidence confidence="0.8"/>
+    <priority priority="0.4"/>
+  </rule>
+  <rule name="01_SLOW_fixed obstacle ahead">
+    <condition condition="OPENCV_obstacle == 1 and LiDAR_distance  &lt; 4.0 and LiDAR_distance  &gt; 2.0"/>
     <action action="SLOW"/>
     <confidence confidence="0.4"/>
     <priority priority="0.8"/>
   </rule>
-  <rule name="PASS_OBSTACLES_fixed obstacle ahead">
-    <condition condition="obstacle == 1 and distance &lt; 2.0"/>
+  <rule name="02_PASS_OBSTACLES_fixed obstacle ahead">
+    <condition condition="OPENCV_obstacle == 1 and LiDAR_distance  &lt; 2.0"/>
     <action action="PASS_OBSTACLES"/>
     <confidence confidence="0.4"/>
     <priority priority="1.0"/>
   </rule>
-  <rule name="default">
-    <condition condition="True"/>
-    <action action="GO_STRANGE"/>
+  <rule name="03_SET_SPEED_LIMIT_sign speed limited recognition">
+    <condition condition="CNN_sign_recognition == 1"/>
+    <action action="SET_SPEED_LIMIT"/>
     <confidence confidence="0.5"/>
-    <priority priority="0.1"/>
+    <priority priority="1.0"/>
   </rule>
   <!-- end of rules -->
 </rules>

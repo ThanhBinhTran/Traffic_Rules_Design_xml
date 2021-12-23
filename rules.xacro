@@ -5,7 +5,7 @@
 <xacro:include filename='property.xacro' />
 
 <!-- rules framework -->
-<xacro:macro name='rules' params='name action confidence priority condition' >
+<xacro:macro name='rules' params='name action:=GO_STRANGE confidence:=0.5 priority:=0.5 condition:=True' >
     <rule name ='${name}'>
     <condition condition='${condition}' />
     <action action='${action}' />
@@ -15,20 +15,25 @@
 </xacro:macro>
 
 <!-- rule data-->
-<xacro:rules name='SLOW_fixed obstacle ahead'
-    action='SLOW' confidence='${LOW_04}' priority='${HIGH_08}' 
-    condition = 'obstacle == ${OBSTACLE_FIXED} and distance &lt; ${DISTANCE_WARNING} and distance &gt; ${DISTANCE_DANGER}'
-/>
-
-<xacro:rules name='PASS_OBSTACLES_fixed obstacle ahead'
-    action='PASS_OBSTACLES' confidence='${LOW_02}' priority='${HIGH_10}' 
-    condition = 'obstacle == ${OBSTACLE_FIXED} and distance &lt; ${DISTANCE_DANGER}'
-/>
 
 <!-- default rule , condition = True -->
-<xacro:rules name='default'
-    action='GO_STRANGE' confidence='${NORM_05}' priority='${LOW_01}' 
-    condition = 'True'
+<xacro:rules name='00_default'
+    confidence='${HIGH_08}' priority='${LOW_01}' 
+/>
+
+<xacro:rules name='01_SLOW_fixed obstacle ahead'
+    action='SLOW' confidence='${LOW_04}' priority='${HIGH_08}' 
+    condition = 'OPENCV_obstacle == ${OBSTACLE_FIXED} and LiDAR_distance  &lt; ${DISTANCE_WARNING} and LiDAR_distance  &gt; ${DISTANCE_DANGER}'
+/>
+
+<xacro:rules name='02_PASS_OBSTACLES_fixed obstacle ahead'
+    action='PASS_OBSTACLES' confidence='${LOW_02}' priority='${HIGH_10}' 
+    condition = 'OPENCV_obstacle == ${OBSTACLE_FIXED} and LiDAR_distance  &lt; ${DISTANCE_DANGER}'
+/>
+
+<xacro:rules name='03_SET_SPEED_LIMIT_sign speed limited recognition'
+    action='SET_SPEED_LIMIT' priority='${HIGH_10}' 
+    condition = 'CNN_sign_recognition == ${SPEED_LIMIT}'
 />
 <!-- end of rules -->
 </rules>

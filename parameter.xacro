@@ -19,10 +19,18 @@
 <xacro:parameter name="LOW_02" value="0.4" />
 <xacro:parameter name="LOW_01" value="0.4" />
 <xacro:parameter name="LOW_00" value="0.0" />
+
+<!-- NONE DETECTION/RECOGNITION -->
+<xacro:parameter name="NONE" value="0" />
+
+<!-- LiDAR output property-->
 <xacro:parameter name="DISTANCE_SAFETY" value="6.0" />
 <xacro:parameter name="DISTANCE_WARNING" value="4.0" />
 <xacro:parameter name="DISTANCE_DANGER" value="2.0" />
+<!-- OPEN CV detection property -->
 <xacro:parameter name="OBSTACLE_FIXED" value="1" />
 <xacro:parameter name="OBSTACLE_MOVABLE" value="2" />
+<!-- CNN sign recognition property-->
+<xacro:parameter name="SPEED_LIMIT" value="1" />
 
 </parameters>
