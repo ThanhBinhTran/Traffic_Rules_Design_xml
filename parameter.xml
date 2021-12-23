@@ -11,9 +11,9 @@
   <parameter name="HIGH_06" value="0.6"/>
   <parameter name="NORM_05" value="0.5"/>
   <parameter name="LOW_04" value="0.4"/>
-  <parameter name="LOW_03" value="0.4"/>
+  <parameter name="LOW_03" value="0.3"/>
   <parameter name="LOW_02" value="0.4"/>
-  <parameter name="LOW_01" value="0.4"/>
+  <parameter name="LOW_01" value="0.1"/>
   <parameter name="LOW_00" value="0.0"/>
   <parameter name="DISTANCE_SAFETY" value="6.0"/>
   <parameter name="DISTANCE_WARNING" value="4.0"/>
