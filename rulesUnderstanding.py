@@ -4,6 +4,12 @@ import numpy as np
 
 rules_file = "rules.xml"
 param_file = "parameter.xml"
+rule_names = []
+rule_conditions = []
+rule_priorities = []
+rule_confidences = []
+rule_actions = []
+
 ''' get name rule '''
 def get_rule_name(rule):
     return rule.attrib.get("name")
@@ -26,7 +32,7 @@ def get_parameter_value(root, element_name):
 ''' 
 apply rules in specific situation, return indexes of matching rules
 '''
-def apply_specific_situation (obstacle = None, distance = 10, CNN_sign_recognition="0", rule_conditions = ""):
+def apply_specific_situation (obstacle = None, distance = 10, CNN_sign_recognition="0"):
     #print ("rule_conditions: ", rule_conditions)
     
     conds = [cmd_str.replace("OPENCV_obstacle", str(obstacle)) for cmd_str in rule_conditions]
@@ -49,15 +55,14 @@ def execute_rule (rule_condition_str):
     return res
 
 ''' choose a rule which has highest priority and satified the conditions '''
-def choose_rule(rule_condition_result, rule_priorities):
+def choose_rule(rule_condition_result):
     rule_true_condition_priorities = np.multiply(rule_priorities, rule_condition_result)
     rule_choose_idx = np.argmax(rule_true_condition_priorities)
     print ("chosen rule idx", rule_choose_idx)
     return rule_choose_idx
 
 ''' print rule out '''
-def print_rule(idx, rule_names, rule_conditions, rule_priorities, 
-            rule_confidences, rule_actions):
+def print_rule(idx):
         print ("rule_names ", rule_names[idx])
         print ("_____action: ", rule_actions[idx])
         print ("_____condition: ", rule_conditions[idx])
@@ -65,8 +70,7 @@ def print_rule(idx, rule_names, rule_conditions, rule_priorities,
         print ("_____confidence: ", rule_confidences[idx])
 
 
-def print_rules(rule_names, rule_conditions, rule_priorities, 
-            rule_confidences, rule_actions):
+def print_rules():
     for i in range(len(rule_names)):
         print_rule(i, rule_names, rule_conditions, rule_priorities, 
             rule_confidences, rule_actions)
@@ -77,11 +81,7 @@ def main(rules_file, param_file):
     ''' parsing rules '''
     tree = ET.parse(rules_file)
     root = tree.getroot()
-    rule_names = []
-    rule_conditions = []
-    rule_priorities = []
-    rule_confidences = []
-    rule_actions = []
+
     rule_names = np.array([get_rule_name(rule) for rule in root])
     rule_conditions = np.array([get_tag_elements(rule, "condition") for rule in root])
     rule_priorities = np.array([get_tag_elements(rule, "priority") for rule in root])
@@ -90,8 +90,7 @@ def main(rules_file, param_file):
     rule_priorities = rule_priorities.astype(float)
     rule_confidences = rule_confidences.astype(float)
 
-    print_rules(rule_names, rule_conditions, rule_priorities, 
-                rule_confidences, rule_actions)
+    print_rules()
     
     ''' getting parameter '''
     param_tree = ET.parse(param_file)
@@ -106,16 +105,14 @@ def main(rules_file, param_file):
     # get all rules matching specific situation
     rule_condition_result = apply_specific_situation(obstacle = OPENCV_obstacle,
                     distance = LiDAR_distance, 
-                    CNN_sign_recognition = CNN_sign_recognition, 
-                    rule_conditions = rule_conditions)
+                    CNN_sign_recognition = CNN_sign_recognition)
     print ("rule_matching result [conditions]:", rule_condition_result)
     print ("rule_matching result [priorities]:", rule_priorities)
     print ("rule_matching result [confidences]:", rule_confidences)
 
-    rule_idx = choose_rule(rule_condition_result, rule_priorities)
+    rule_idx = choose_rule(rule_condition_result)
     # print chosen rule
-    print_rule(rule_idx, rule_names, rule_conditions, rule_priorities, 
-                    rule_confidences, rule_actions)
+    print_rule(rule_idx)
     
 if __name__ == '__main__':
     main(rules_file, param_file)
